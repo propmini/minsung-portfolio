@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인턴십 실무 리포트 | 강민성 포트폴리오</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { warm: '#FDFBF7', brand: '#1F3D2B', sand: '#E7E1D8' }, fontFamily: { sans: ['Pretendard', 'sans-serif'] } }
+            }
+        }
+    </script>
+</head>
+<body class="bg-warm text-stone-800 font-sans antialiased">
+
+    <!-- Top Navigation -->
+    <nav class="bg-white border-b border-sand sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-stone-600 hover:text-brand text-sm font-semibold flex items-center gap-2 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> 메인 포트폴리오로 돌아가기
+            </a>
+            <span class="font-bold text-brand text-xs">GBSA 현장실습 리포트</span>
+        </div>
+    </nav>
+
+    <!-- Header (건물 배경 이미지 + 로고) -->
+    <header class="relative bg-stone-900 py-16 overflow-hidden" style="background-image: url('gbsa_building.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-brand/80 backdrop-blur-[2px]"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-start">
+            <div class="w-24 h-24 bg-white rounded-2xl flex items-center justify-center p-3 shadow-lg shrink-0">
+                <img src="gbsa_logo.png" alt="GBSA 로고" class="max-w-full max-h-full" onerror="this.style.display='none';">
+            </div>
+            <div class="space-y-4 text-center md:text-left flex-1">
+                <div class="flex items-center gap-3 justify-center md:justify-start">
+                    <span class="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-xs font-bold border border-white/30">2026.03 ~ 2026.08</span>
+                    <a href="https://www.gbsa.or.kr/" target="_blank" class="text-xs font-bold text-sand hover:text-white transition-colors"><i class="fa-solid fa-link"></i> 홈페이지</a>
+                </div>
+                <h1 class="text-3xl font-extrabold text-white">경기도경제과학진흥원(GBSA)<br><span class="text-xl font-medium text-sand mt-1 block">광교테크노밸리팀 인턴</span></h1>
+                <p class="text-white/80 text-sm leading-relaxed max-w-2xl">
+                    도내 주요 산업 인프라의 시설 유지보수, 우수 기업 입주 심사 및 임대차 관리를 통해 혁신 클러스터의 기반을 닦는 핵심 역할을 수행했습니다.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="max-w-4xl mx-auto px-6 py-12 space-y-10">
+
+        <!-- 1. 법령 및 계약 관리 -->
+        <div class="bg-white p-7 rounded-2xl border border-sand shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-brand flex items-center gap-2 border-b border-sand pb-3">
+                <i class="fa-solid fa-scale-balanced"></i> 1. 상가임대차보호법 및 공유재산법 실무 적용
+            </h2>
+            <ul class="space-y-3 text-sm text-stone-700 leading-relaxed">
+                <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-brand mt-1"></i><div><strong>공유재산법 및 상가건물 임대차보호법 제반지식 습득:</strong> 공공기관 특성상 엄격한 공유재산 관리 규정을 준수해야 하는 임대차계약서 정리 업무를 주도했습니다.</div></li>
+                <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-brand mt-1"></i><div><strong>임대차계약서 전수 정리 및 현안 파악:</strong> 광교테크노밸리 내 입주기업 계약 갱신 주기, 보증금/임대료 현황을 DB화하여 리스크를 예방했습니다.</div></li>
+                <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-brand mt-1"></i><div><strong>입주기업 모집 및 심사 프로세스 지원:</strong> 공고문 작성부터 입주신청서 접수, 입주심의위원회 운영 보조까지 계약 전 단계 행정을 완수했습니다.</div></li>
+            </ul>
+        </div>
+
+        <!-- 2. 현장 자산관리 및 커뮤니케이션 (이미지 2개 추가) -->
+        <div class="bg-white p-7 rounded-2xl border border-sand shadow-sm space-y-6">
+            <h2 class="text-lg font-bold text-brand flex items-center gap-2 border-b border-sand pb-3">
+                <i class="fa-solid fa-screwdriver-wrench"></i> 2. 시설물 관리, 홍보 및 민원 응대
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-stone-700">
+                <div class="p-4 bg-warm rounded-xl border border-sand/50">
+                    <strong class="block text-stone-900 mb-1">시설물 하자 점검 및 기안</strong>
+                    <p class="text-stone-600 text-xs">하자 현장 확인 후 보수 일지 작성 및 영선팀 협의, 기안 작성.</p>
+                </div>
+                <div class="p-4 bg-warm rounded-xl border border-sand/50">
+                    <strong class="block text-stone-900 mb-1">입주자 및 예비입주자 민원 응대</strong>
+                    <p class="text-stone-600 text-xs">시설 이용 불편사항, 관리비 질의 등 고객 접점 커뮤니케이션.</p>
+                </div>
+            </div>
+
+            <!-- 홍보물 기획(공고문, 뉴스레터 이미지) -->
+            <div class="mt-6 border-t border-dashed border-sand pt-6">
+                <strong class="block text-stone-900 mb-3 font-bold text-sm">임대 홍보물 기획 및 제작</strong>
+                <p class="text-xs text-stone-600 mb-4 leading-relaxed">
+                    공실 해소를 위해 센터 내 LED 전광판 송출용 배너와 오프라인 임대차 모집 공고문(뉴스레터 형태)을 직접 기획하고 디자인했습니다. 시각적으로 명확한 입주 혜택 전달을 통해 실질적인 공실률 축소에 기여했습니다.
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- 이미지 1: 입주모집 공고문 -->
+                    <div class="bg-stone-50 border border-sand/80 p-3 rounded-xl text-center flex flex-col items-center justify-center">
+                        <span class="text-xs font-bold text-stone-500 mb-2">입주모집 공고문</span>
+                        <img src="gbsa_notice.png" alt="입주모집 공고문" class="w-full h-auto object-contain rounded" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="hidden text-xs text-stone-400 py-8">gbsa_notice.png 파일 필요</div>
+                    </div>
+                    <!-- 이미지 2: 임대 뉴스레터 -->
+                    <div class="bg-stone-50 border border-sand/80 p-3 rounded-xl text-center flex flex-col items-center justify-center">
+                        <span class="text-xs font-bold text-stone-500 mb-2">임대 뉴스레터</span>
+                        <img src="gbsa_newsletter.png" alt="임대 뉴스레터" class="w-full h-auto object-contain rounded" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="hidden text-xs text-stone-400 py-8">gbsa_newsletter.png 파일 필요</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 실무 적용점 -->
+        <div class="bg-brand text-white p-8 rounded-2xl space-y-3 shadow-md">
+            <h2 class="text-lg font-bold">공공 부동산 기여 및 실무 적용점</h2>
+            <p class="text-white/80 text-sm leading-relaxed">
+                6개월간의 현장실습을 통해 습득한 공유재산 관리 규정 이해, 임대차 계약서 권리 분석, 행정 기안 작성 등의 실무 경험은 향후 공공의 주택공급, 자산 관리, 임대차 분쟁 조정 등 주거 안정망을 고도화하는 현장에서 전문 역량으로 발휘될 것입니다.
+            </p>
+        </div>
+
+    </main>
+
+    <footer class="text-center py-6 text-stone-400 text-xs border-t border-sand">
+        &copy; 2026 Kang Min-sung. All rights reserved.
+    </footer>
+</body>
+</html>

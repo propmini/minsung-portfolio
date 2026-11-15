@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강민성 | 상업용 부동산 & 프롭테크 전문가 포트폴리오</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: '#ffffff', brand: '#111111', sand: '#e5e5e5', terracotta: '#d9381e'
+                    },
+                    fontFamily: { sans: ['Pretendard', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 외부 라이브러리: Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .glass-nav { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #eee; backdrop-filter: blur(5px); }
+        
+        /* 스크롤 애니메이션 */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* 전문 용어 툴팁 스타일 */
+        .tooltip-term { 
+            text-decoration: underline; text-decoration-style: dashed; text-underline-offset: 4px; 
+            text-decoration-color: #d9381e; cursor: help; position: relative; display: inline-block;
+        }
+        
+        /* 챗봇 타이핑 및 애니메이션 */
+        .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        
+        @keyframes wiggle {
+            0% { transform: rotate(0deg) scale(1.05); }
+            25% { transform: rotate(-8deg) scale(1.05); }
+            50% { transform: rotate(0deg) scale(1.05); }
+            75% { transform: rotate(8deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1.05); }
+        }
+        .bot-hover:hover { animation: wiggle 0.5s ease-in-out infinite; cursor: pointer; }
+        
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-float { animation: floatBubble 2.5s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-warm text-stone-800 font-sans antialiased selection:bg-brand selection:text-white relative">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-40 glass-nav transition-all">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-lg font-bold tracking-tight text-brand">KANG MIN-SUNG</a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-500">
+                <a href="#resume" class="hover:text-brand transition-colors">Resume</a>
+                <a href="#summary" class="hover:text-brand transition-colors">Competencies</a>
+                <a href="#projects" class="hover:text-brand transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-brand transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-brand transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section id="resume" class="pt-32 pb-20 bg-white border-b border-sand reveal">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-10 md:gap-16 mb-16">
+                <!-- Profile Image -->
+                <div class="w-40 h-52 md:w-48 md:h-64 shrink-0 bg-sand/30 rounded-lg shadow-sm border border-sand flex items-center justify-center overflow-hidden relative">
+                    <img src="profile.png" alt="강민성 프로필" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="hidden flex-col items-center justify-center text-stone-400">
+                        <i class="fa-solid fa-user text-4xl"></i>
+                    </div>
+                </div>
+
+                <!-- Info & About -->
+                <div class="flex-1 flex flex-col justify-center">
+                    <div class="flex flex-col lg:flex-row lg:justify-between gap-8">
+                        <div class="shrink-0">
+                            <h1 class="text-4xl font-extrabold text-stone-900 tracking-tight">강민성</h1>
+                            <h2 class="text-xl font-bold text-stone-600 mt-1 mb-4">Kang Min-sung</h2>
+                            <div class="text-xs text-stone-500 space-y-1.5 font-medium">
+                                <p>Phone &nbsp;&nbsp;010-2892-5108</p>
+                                <p>E-Mail &nbsp;&nbsp;kms132435@naver.com</p>
+                            </div>
+                            <div class="mt-6 flex gap-2">
+                                <a href="resume_kangminseong.pdf" target="_blank" class="px-3 py-1.5 bg-stone-100 text-stone-700 text-xs font-bold rounded border border-stone-200 hover:bg-stone-200 transition-colors"><i class="fa-regular fa-file-pdf mr-1"></i> CV 열람</a>
+                                <a href="resume_kangminseong.pdf" download class="px-3 py-1.5 bg-white text-stone-700 text-xs font-bold rounded border border-stone-200 hover:bg-stone-50 transition-colors"><i class="fa-solid fa-download mr-1"></i> 다운로드</a>
+                            </div>
+                        </div>
+
+                        <!-- 자기소개 무던하고 담백하게 수정 완료 -->
+                        <div class="max-w-md w-full">
+                            <h3 class="text-xs font-bold text-stone-900 uppercase tracking-widest mb-3">About Myself</h3>
+                            <p class="text-sm text-stone-600 leading-relaxed text-justify">
+                                상업용 부동산 매입·매각과 자산가치 극대화에 목표를 둔 부동산 전문가입니다. 거시 데이터와 프롭테크 기술을 활용한 객관적인 시장 분석 역량, 그리고 자산관리 현장에서 체득한 실무 경험을 갖추었습니다.<br><br>
+                                탄탄한 데이터 분석력과 투자 타당성 검토 능력을 바탕으로, 상업용 부동산 시장의 숨겨진 가치를 발굴하고 안정적인 매입·매각 업무를 수행하는 실무자로 성장하겠습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 하단: 이력 요약 리스트 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 border-t-2 border-stone-900 pt-8 reveal">
+                <div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-4 border-b border-stone-300 pb-2">학력 및 경력</h3>
+                    <ul class="text-xs text-stone-700 space-y-3 font-medium">
+                        <li class="flex justify-between gap-4"><span>경기도경제과학진흥원 인턴</span><span class="text-stone-400 whitespace-nowrap">2026.03-08</span></li>
+                        <li class="flex justify-between gap-4 mt-6"><span>단국대학교 도시계획·부동산학부</span><span class="text-stone-400 whitespace-nowrap">4학년 재학</span></li>
+                        <li class="flex justify-between gap-4"><span class="pl-2 text-stone-500 text-[10px]">└ 단우장학금/성적우수 수혜</span></li>
+                        <li class="flex justify-between gap-4"><span>Avondale College (뉴질랜드)</span><span class="text-stone-400 whitespace-nowrap">졸업</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-4 border-b border-stone-300 pb-2">어학 및 자격성적</h3>
+                    <ul class="text-xs text-stone-700 space-y-3 font-medium">
+                        <li class="flex justify-between gap-4"><span>투자자산운용사</span><span class="text-stone-400 whitespace-nowrap">금융투자협회</span></li>
+                        <li class="flex justify-between gap-4"><span>컴퓨터활용능력 1급 (필기)</span><span class="text-stone-400 whitespace-nowrap">대한상공회의소</span></li>
+                        <li class="flex justify-between gap-4"><span>TOEIC</span><span class="text-stone-400 whitespace-nowrap">905점</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-4 border-b border-stone-300 pb-2">대외활동 및 교육</h3>
+                    <ul class="text-xs text-stone-700 space-y-3 font-medium">
+                        <li class="flex justify-between gap-4"><span>주택도시보증공사(HUG) 청년위원</span><span class="text-stone-400 whitespace-nowrap">수료</span></li>
+                        <li class="flex justify-between gap-4"><span>대한국토·도시계획학회 여름학교</span><span class="text-stone-400 whitespace-nowrap">수료</span></li>
+                        <li class="flex justify-between gap-4"><span>단국대 URID 도시계획부동산학회</span><span class="text-stone-400 whitespace-nowrap">수료</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Profile & Summary -->
+    <section id="summary" class="py-20 bg-stone-50 border-b border-sand/40">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <h2 class="text-3xl font-bold text-stone-900 tracking-tight">Core Competencies</h2>
+                <p class="text-stone-500 text-sm mt-1">상업용 부동산 매입매각 및 자산관리 실무에 최적화된 4대 핵심 역량</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Competency 1 -->
+                <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm reveal hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center gap-2 mb-3 relative group">
+                        <span class="w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold">1</span>
+                        <h4 class="font-bold text-stone-900">상업용 부동산 매입·매각 타당성 분석 (<span class="tooltip-term">IM</span>)</h4>
+                        <div class="absolute bottom-full left-10 mb-2 w-64 bg-stone-900 text-white text-xs rounded-lg p-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 shadow-xl hidden md:block">
+                            <strong>IM (투자설명서):</strong> 잠재적 투자자에게 부동산 자산의 현황, 매입 타당성, 예상 수익률(IRR) 등을 브리핑하는 핵심 문서입니다.
+                        </div>
+                    </div>
+                    <p class="text-sm text-stone-600 pl-8 leading-relaxed">강남권역(GBD) 프라임 오피스 매입 타당성을 검토하며 임대차 구조 분석, 리츠 기반의 캐시플로우(Cash-flow) 추정 및 투자설명서(IM) 작성 실무 수행.</p>
+                </div>
+                
+                <!-- Competency 2 -->
+                <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm reveal hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center gap-2 mb-3 relative group">
+                        <span class="w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold">2</span>
+                        <h4 class="font-bold text-stone-900">데이터 기반 부동산 시장 분석 및 프롭테크 활용</h4>
+                    </div>
+                    <p class="text-sm text-stone-600 pl-8 leading-relaxed">오차수정모형(VECM) 등 통계 모형을 활용하여 금리 변동 및 거시 경제가 부동산 시장에 미치는 동태적 인과관계를 실증적으로 분석하고 시각화하는 데이터 핸들링 역량.</p>
+                </div>
+
+                <!-- Competency 3 -->
+                <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm reveal hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center gap-2 mb-3 relative group">
+                        <span class="w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold">3</span>
+                        <h4 class="font-bold text-stone-900">상가임대차 실무 및 자산관리(<span class="tooltip-term">PM·LM</span>) 경험</h4>
+                        <div class="absolute bottom-full left-10 mb-2 w-64 bg-stone-900 text-white text-xs rounded-lg p-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 shadow-xl hidden md:block">
+                            <strong>PM/LM:</strong> Property Management(부동산 자산관리) 및 Leasing Management(임대차 관리)의 약자로, 입주사 관리 및 수익률 극대화를 위한 현장 실무입니다.
+                        </div>
+                    </div>
+                    <p class="text-sm text-stone-600 pl-8 leading-relaxed">자산관리 실무 인턴십을 통해 상가임대차보호법 등 법령에 기반한 계약서 검토, 테넌트 심의 지원 및 현장 시설물 관리(FM) 등 전주기 프로세스 체득.</p>
+                </div>
+
+                <!-- Competency 4 -->
+                <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm reveal hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center gap-2 mb-3 relative group">
+                        <span class="w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold">4</span>
+                        <h4 class="font-bold text-stone-900">밸류애드(Value-add) 기획 및 마케팅</h4>
+                    </div>
+                    <p class="text-sm text-stone-600 pl-8 leading-relaxed">공실 리스크 헷징 및 상업용 자산의 가치 상승을 위해 타겟 테넌트를 분석하고, 오프라인 임대차 모집 공고(뉴스레터) 및 홍보 배너를 직접 기획하는 능동적 문제 해결력.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Core Projects -->
+    <section id="projects" class="py-20 border-b border-sand bg-white overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-2xl font-bold text-brand mb-10 text-center tracking-tight reveal">CORE PROJECTS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 (Chart.js 라이브 차트) -->
+                <div class="reveal h-full">
+                    <div class="bg-stone-50 p-6 border border-stone-200 rounded-xl shadow-sm h-full flex flex-col hover:shadow-md transition-shadow duration-300">
+                        <div class="text-[10px] font-bold text-terracotta uppercase tracking-wider mb-2 flex justify-between">
+                            <span>Data Analysis</span><span class="text-stone-400"><i class="fa-solid fa-chart-line"></i> Interactive Chart</span>
+                        </div>
+                        <h3 class="text-base font-bold text-stone-900 mb-4 h-12">거시 경제가 부동산 가격에 미치는 동태적 영향 분석</h3>
+                        
+                        <!-- 마우스 이벤트 완벽 작동하는 차트 영역 -->
+                        <div class="h-40 bg-white border border-stone-200 mb-4 rounded relative p-2">
+                            <canvas id="vecmChart" class="w-full h-full"></canvas>
+                        </div>
+
+                        <div class="text-xs text-stone-600 space-y-2 mb-6 flex-1">
+                            <p><strong>역할:</strong> 거시 데이터 수합 및 VECM 추정 총괄</p>
+                            <p><strong>결과:</strong> 인구구조 및 거시 지표 변화가 부동산 시장에 미치는 영향 규명</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="project_vecm.pdf" target="_blank" class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-[11px] font-bold rounded hover:bg-stone-100 transition-colors">문서 열람</a>
+                            <a href="project_vecm.pdf" download class="px-3 py-1.5 border border-stone-300 text-stone-600 text-[11px] font-bold rounded hover:bg-white transition-colors">다운로드</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 (구글 맵 API 임베딩 - 순서 조정하여 위로 배치) -->
+                <div class="reveal h-full">
+                    <div class="bg-stone-50 p-6 border border-stone-200 rounded-xl shadow-sm h-full flex flex-col hover:shadow-md transition-shadow duration-300">
+                        <div class="text-[10px] font-bold text-terracotta uppercase tracking-wider mb-2 flex justify-between">
+                            <span>Investment Analysis</span><span class="text-stone-400"><i class="fa-solid fa-map-location-dot"></i> Live GIS Map</span>
+                        </div>
+                        <h3 class="text-base font-bold text-stone-900 mb-4 h-12">매입 IM - 삼원타워 매입 및 투자의 건</h3>
+                        
+                        <!-- 마우스 드래그/휠 완벽 작동 + 빨간 핀 표시되는 클래식 지도 방식 -->
+                        <div class="h-40 bg-white border border-stone-200 mb-4 rounded overflow-hidden relative">
+                            <iframe src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C%20124%20%EC%82%BC%EC%9B%90%ED%83%80%EC%9B%8C&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+
+                        <div class="text-xs text-stone-600 space-y-2 mb-6 flex-1">
+                            <p><strong>역할:</strong> GBD 오피스 시장 조사 및 캐시플로우 구조화</p>
+                            <p><strong>결과:</strong> 배당 수익률 시뮬레이션 기반 타당성 검토 IM 완성</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="project_samwon.pdf" target="_blank" class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-[11px] font-bold rounded hover:bg-stone-100 transition-colors">문서 열람</a>
+                            <a href="project_samwon.pdf" download class="px-3 py-1.5 border border-stone-300 text-stone-600 text-[11px] font-bold rounded hover:bg-white transition-colors">다운로드</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="reveal h-full">
+                    <div class="bg-stone-50 p-6 border border-stone-200 rounded-xl shadow-sm h-full flex flex-col hover:shadow-md transition-shadow duration-300">
+                        <div class="text-[10px] font-bold text-terracotta uppercase tracking-wider mb-2">Market Research</div>
+                        <h3 class="text-base font-bold text-stone-900 mb-4 h-12">주택담보대출 금리 변화가 시장에 미치는 영향</h3>
+                        
+                        <div class="h-40 bg-white border border-stone-200 mb-4 rounded overflow-hidden">
+                            <img src="cover_interest.png" class="w-full h-full object-cover" onerror="this.style.display='none';">
+                        </div>
+
+                        <div class="text-xs text-stone-600 space-y-2 mb-6 flex-1">
+                            <p><strong>역할:</strong> 기준금리 및 코픽스 연계성 모형 설계</p>
+                            <p><strong>결과:</strong> 금리 인상 충격이 전세 및 부동산 시장에 미치는 경로 도출</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="project_interest.pdf" target="_blank" class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-[11px] font-bold rounded hover:bg-stone-100 transition-colors">문서 열람</a>
+                            <a href="project_interest.pdf" download class="px-3 py-1.5 border border-stone-300 text-stone-600 text-[11px] font-bold rounded hover:bg-white transition-colors">다운로드</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="reveal h-full">
+                    <div class="bg-stone-50 p-6 border border-stone-200 rounded-xl shadow-sm h-full flex flex-col hover:shadow-md transition-shadow duration-300">
+                        <div class="text-[10px] font-bold text-terracotta uppercase tracking-wider mb-2">Policy Proposal</div>
+                        <h3 class="text-base font-bold text-stone-900 mb-4 h-12">부동산 임대차 시장 리스크 헷징 기획 - 안심인증제</h3>
+                        
+                        <div class="h-40 bg-white border border-stone-200 mb-4 rounded overflow-hidden">
+                            <img src="cover_hug.png" class="w-full h-full object-cover" onerror="this.style.display='none';">
+                        </div>
+
+                        <div class="text-xs text-stone-600 space-y-2 mb-6 flex-1">
+                            <p><strong>역할:</strong> 권리관계 비대칭 분석 및 인센티브 체계 입안</p>
+                            <p><strong>결과:</strong> 건전 임대인에게 보증료 할인을 제공하는 안심인증제 정책 제안</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="project_hug.pdf" target="_blank" class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-[11px] font-bold rounded hover:bg-stone-100 transition-colors">문서 열람</a>
+                            <a href="project_hug.pdf" download class="px-3 py-1.5 border border-stone-300 text-stone-600 text-[11px] font-bold rounded hover:bg-white transition-colors">다운로드</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Experience -->
+    <section id="experience" class="py-20 bg-stone-50 border-b border-sand/40">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-10 reveal">
+                <h2 class="text-3xl font-bold text-stone-900 tracking-tight">Experience</h2>
+                <p class="text-stone-500 text-sm mt-1">현장에서 검증된 부동산 자산관리 및 임대차 행정 실무</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm reveal">
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-5 mb-6 pb-6 border-b border-stone-100">
+                    <div class="w-16 h-16 shrink-0 border border-stone-200 rounded-lg p-1 bg-white flex items-center justify-center">
+                        <img src="gbsa_logo.png" alt="GBSA 로고" class="max-w-full max-h-full object-contain" onerror="this.style.display='none';">
+                    </div>
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-stone-100 text-stone-600 border border-stone-200 text-xs font-bold">2026.03 ~ 2026.08 (6개월)</span>
+                        <h3 class="text-2xl font-bold text-stone-900 mt-2">경기도경제과학진흥원(GBSA) 광교테크노밸리팀</h3>
+                        <p class="text-sm font-semibold text-brand mt-1">자산관리 실무 인턴 | 상업시설 임대관리(LM) 및 입주지원</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-stone-700">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-stone-900 text-base"><i class="fa-solid fa-scale-balanced text-brand mr-1"></i> 법령 기반 임대차 계약 및 테넌트 관리</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-xs text-stone-600">
+                            <li><strong class="text-stone-700">상가임대차법 및 실무 체득:</strong> 규정에 기반한 임대차계약서 정리 및 갱신 업무를 주도했습니다.</li>
+                            <li><strong class="text-stone-700">계약 현안 파악:</strong> 입주기업 계약 갱신 주기, 보증금/임대료 현황을 DB화하여 연체 리스크를 예방했습니다.</li>
+                            <li><strong class="text-stone-700">입주기업 심의 지원:</strong> 입주 모집 공고문 작성, 신청서 접수, 입주심의위원회 사전 준비를 완수했습니다.</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-stone-900 text-base"><i class="fa-solid fa-building-circle-check text-brand mr-1"></i> 시설물(FM) 관리 및 현장 커뮤니케이션</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-xs text-stone-600">
+                            <li><strong class="text-stone-700">시설물 하자 기안:</strong> 하자 현장 확인 후 보수 일지 작성 및 영선팀 협의를 거쳐 기안을 작성했습니다.</li>
+                            <li><strong class="text-stone-700">테넌트 응대:</strong> 시설 불편사항, 신규 입주 안내 등 고객 접점(CS) 커뮤니케이션을 능동적으로 수행했습니다.</li>
+                            <li><strong class="text-stone-700">데이터 통계 분석:</strong> 200인 대상 구내식당 만족도 설문을 설계하고 Excel 교차 통계 분석을 진행했습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 홍보물 이미지 영역 -->
+                <div class="mt-8 pt-8 border-t border-stone-200 border-dashed">
+                    <h4 class="font-bold text-stone-900 text-base mb-2"><i class="fa-solid fa-bullhorn text-brand mr-1"></i> 밸류애드를 위한 임대 마케팅 홍보물 기획</h4>
+                    <p class="text-xs text-stone-600 mb-5 leading-relaxed">
+                        자산의 공실 해소를 위해 센터 내 LED 전광판 송출용 배너와 오프라인 임대차 모집 공고문(뉴스레터 형태)을 직접 기획하고 디자인했습니다.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-stone-50 border border-stone-200 p-3 rounded-xl text-center flex flex-col items-center justify-center">
+                            <span class="text-xs font-bold text-stone-500 mb-2">입주모집 공고문</span>
+                            <img src="gbsa_notice.png" alt="입주모집 공고문" class="w-full h-auto object-contain rounded border border-stone-200" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="hidden text-xs text-stone-400 py-8">gbsa_notice.png 파일 필요</div>
+                        </div>
+                        <div class="bg-stone-50 border border-stone-200 p-3 rounded-xl text-center flex flex-col items-center justify-center">
+                            <span class="text-xs font-bold text-stone-500 mb-2">임대 뉴스레터</span>
+                            <img src="gbsa_newsletter.png" alt="임대 뉴스레터" class="w-full h-auto object-contain rounded border border-stone-200" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="hidden text-xs text-stone-400 py-8">gbsa_newsletter.png 파일 필요</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 자격증 및 수료증 -->
+    <section id="certificates" class="py-20 bg-white border-b border-sand/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <h2 class="text-3xl font-bold text-stone-900 tracking-tight">Certifications & Credentials</h2>
+                <p class="text-stone-500 text-sm mt-1">클릭 시 원본 확인 가능</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 reveal">
+                <div class="p-4 bg-stone-50 border border-stone-200 text-center cursor-pointer hover:bg-stone-100 hover:shadow-sm transition-all rounded-lg" onclick="openCertModal('cert_invest.png')">
+                    <div class="text-[10px] text-stone-500 mb-1">금융투자협회</div>
+                    <div class="text-xs font-bold text-stone-800">투자자산운용사</div>
+                </div>
+                <div class="p-4 bg-stone-50 border border-stone-200 text-center cursor-pointer hover:bg-stone-100 hover:shadow-sm transition-all rounded-lg" onclick="openCertModal('cert_toeic.png')">
+                    <div class="text-[10px] text-stone-500 mb-1">ETS</div>
+                    <div class="text-xs font-bold text-stone-800">TOEIC 905점</div>
+                </div>
+                <div class="p-4 bg-stone-50 border border-stone-200 text-center cursor-pointer hover:bg-stone-100 hover:shadow-sm transition-all rounded-lg" onclick="openCertModal('cert_com.png')">
+                    <div class="text-[10px] text-stone-500 mb-1">대한상공회의소</div>
+                    <div class="text-xs font-bold text-stone-800">컴퓨터활용능력 1급 (필기)</div>
+                </div>
+                <div class="p-4 bg-stone-50 border border-stone-200 text-center cursor-pointer hover:bg-stone-100 hover:shadow-sm transition-all rounded-lg" onclick="openCertModal('cert_hug.png')">
+                    <div class="text-[10px] text-stone-500 mb-1">주택도시보증공사</div>
+                    <div class="text-xs font-bold text-stone-800">HUG 청년위원 수료증</div>
+                </div>
+                <div class="p-4 bg-stone-50 border border-stone-200 text-center cursor-pointer hover:bg-stone-100 hover:shadow-sm transition-all rounded-lg" onclick="openCertModal('cert_summer.png')">
+                    <div class="text-[10px] text-stone-500 mb-1">대한국토·도시계획학회</div>
+                    <div class="text-xs font-bold text-stone-800">도시부동산개발 여름학교</div>
+                </div>
+                <div class="p-4 bg-stone-50 border border-stone-200 text-center cursor-pointer hover:bg-stone-100 hover:shadow-sm transition-all rounded-lg" onclick="openCertModal('cert_urid.png')">
+                    <div class="text-[10px] text-stone-500 mb-1">단국대학교</div>
+                    <div class="text-xs font-bold text-stone-800">URID 학회 수료증</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Contacts -->
+    <section id="contact" class="py-20 bg-brand text-white">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10 reveal">
+            <div>
+                <h2 class="text-3xl font-extrabold mb-4">CONTACT</h2>
+                <div class="space-y-2 text-sm text-stone-300">
+                    <p><strong class="text-white">성명:</strong> 강민성 (Kang Min-sung)</p>
+                    <p><strong class="text-white">연락처:</strong> 010-2892-5108</p>
+                    <p><strong class="text-white">이메일:</strong> kms132435@naver.com</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <p class="text-xs font-bold text-stone-400">Scan to Save Contact</p>
+                </div>
+                <div class="bg-white p-2 rounded">
+                    <!-- QR 코드 직책 부분도 상업용 부동산으로 변경 -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3A%EA%B0%95%EB%AF%BC%EC%84%B1%0AFN%3A%EA%B0%95%EB%AF%BC%EC%84%B1%0ATEL%3A010-2892-5108%0AEMAIL%3Akms132435%40naver.com%0ATITLE%3A%EC%83%81%EC%97%85%EC%9A%A9%20%EB%B6%80%EB%8F%99%EC%82%B0%20%EC%A0%84%EB%AC%B8%EA%B0%80%0AEND%3AVCARD" alt="연락처 QR" class="w-20 h-20">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vibe Coding 모달 호출 버튼 -->
+        <div class="text-center mt-16 reveal">
+            <button onclick="openVibeModal()" class="text-xs font-bold text-stone-400 border border-stone-600 px-4 py-2 rounded hover:text-white hover:border-white transition-colors">
+                <i class="fa-solid fa-code"></i> Powered by Vibe Coding - 제작 과정 보기
+            </button>
+        </div>
+        <p class="text-center text-[10px] text-stone-500 mt-6">&copy; 2026 Kang Min-sung. All rights reserved.</p>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 인터랙티브 요소들 (모달, 챗봇 등) 하단 배치 -->
+    <!-- ============================================== -->
+
+    <!-- 자격증 모달 -->
+    <div id="certModal" class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeCertModalOnBg(event)">
+        <div class="relative max-w-3xl w-full flex flex-col items-center">
+            <button onclick="closeCertModal()" class="absolute -top-10 right-0 text-white hover:text-sand text-3xl font-bold">&times;</button>
+            <img id="certImage" src="" alt="증명서 원본" class="w-full max-h-[85vh] object-contain hidden">
+        </div>
+    </div>
+
+    <!-- How I Built This 모달 -->
+    <div id="vibeModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl w-full max-w-md p-6 relative shadow-2xl">
+            <button onclick="closeVibeModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-800 text-xl font-bold">&times;</button>
+            <h3 class="text-lg font-bold text-brand mb-2"><i class="fa-solid fa-wand-magic-sparkles text-terracotta"></i> How I Built This</h3>
+            <p class="text-xs text-stone-500 mb-4 border-b border-stone-200 pb-3">프롭테크 기술과 AI의 협업으로 구축된 포트폴리오</p>
+            <ul class="text-sm text-stone-700 space-y-3 leading-relaxed">
+                <li><strong class="text-brand">1. Vibe Coding 활용:</strong> 별도의 프론트엔드 코딩 없이 Gemini AI와의 프롬프트 엔지니어링만을 통해 전체 HTML/CSS 구조를 기획 및 렌더링했습니다.</li>
+                <li><strong class="text-brand">2. Data & GIS 시각화:</strong> 단순 이미지 삽입을 넘어 Chart.js를 통한 동적 그래프와 Google Maps API 연동을 구현했습니다.</li>
+                <li><strong class="text-brand">3. UX/UI 최적화:</strong> 전문 용어 Hover 툴팁, CSS 3D 캐릭터 렌더링, 커스텀 챗봇 스크립트를 적용해 인터랙션을 극대화했습니다.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 💡 CSS 기반 3D 로봇 챗봇 -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        
+        <!-- 챗봇 창 -->
+        <div id="chatWindow" class="bg-white border border-stone-200 shadow-2xl rounded-2xl w-[340px] h-[450px] mb-4 flex flex-col overflow-hidden hidden transition-all origin-bottom-right">
+            
+            <div class="bg-brand text-white px-4 py-3 text-sm font-bold flex justify-between items-center shadow-md z-10">
+                <span class="flex items-center gap-2">
+                    <i class="fa-solid fa-robot text-blue-400"></i>
+                    강민성 AI 어시스턴트
+                </span>
+                <button onclick="toggleChat()" class="hover:text-terracotta text-lg">&times;</button>
+            </div>
+            
+            <div id="chatContent" class="flex-1 p-4 overflow-y-auto bg-stone-50 hide-scrollbar text-xs space-y-4">
+                <div class="flex gap-2">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-robot text-blue-600 text-xs"></i>
+                    </div>
+                    <div class="bg-white border border-stone-200 p-2.5 rounded-xl rounded-tl-none shadow-sm text-stone-700 leading-relaxed">
+                        안녕하세요! 강민성 지원자의 포트폴리오입니다. 궁금한 점을 직접 입력하시거나, 아래 버튼을 클릭해 보세요.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 버튼 -->
+            <div class="px-3 py-2 bg-white border-t border-stone-200 flex gap-2 overflow-x-auto hide-scrollbar whitespace-nowrap">
+                <button onclick="askBot('강민성의 핵심 경쟁력은?')" class="text-[11px] bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-full border border-stone-200 transition-colors shrink-0">핵심 경쟁력</button>
+                <button onclick="askBot('매입/매각 분석 경험은?')" class="text-[11px] bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-full border border-stone-200 transition-colors shrink-0">매입/매각 분석 경험</button>
+                <button onclick="askBot('보유한 자격증은?')" class="text-[11px] bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-full border border-stone-200 transition-colors shrink-0">보유 자격증</button>
+            </div>
+
+            <!-- 사용자 직접 입력 -->
+            <div class="p-3 bg-stone-100 border-t border-stone-200 flex gap-2 items-center">
+                <input type="text" id="chatInput" placeholder="질문을 입력해주세요..." class="flex-1 text-xs border border-stone-300 rounded-lg px-3 py-2 focus:outline-none focus:border-brand shadow-inner" onkeypress="if(event.key === 'Enter') submitChat()">
+                <button onclick="submitChat()" class="bg-brand text-white w-8 h-8 rounded-lg text-xs font-bold hover:bg-stone-800 transition-colors flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 클릭 유도 말풍선 -->
+        <div id="chatHint" class="animate-float mb-3 bg-stone-800 text-white text-xs font-bold px-4 py-2.5 rounded-2xl rounded-br-none shadow-lg cursor-pointer transition-opacity relative" onclick="toggleChat()">
+            직접 질문해 보세요! 👋
+            <div class="absolute -bottom-2 right-6 w-0 h-0 border-l-[6px] border-l-transparent border-t-[8px] border-t-stone-800 border-r-[6px] border-r-transparent"></div>
+        </div>
+
+        <!-- 3D 챗봇 캐릭터 버튼 -->
+        <button onclick="toggleChat()" class="bot-hover relative w-[85px] h-[85px] bg-white/90 backdrop-blur-md rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.1)] border border-stone-200 flex items-center justify-center z-50 transform transition-transform duration-300">
+            <div class="relative w-full h-full flex flex-col items-center justify-end pb-3">
+                <div class="absolute top-2 left-[20px] w-[3px] h-3.5 bg-stone-300 rounded-t-sm rotate-[-20deg]"></div>
+                <div class="absolute top-[5px] left-[17px] w-2.5 h-2.5 bg-stone-300 rounded-full rotate-[-20deg]"></div>
+
+                <div class="w-[56px] h-[48px] bg-gradient-to-br from-white via-stone-50 to-stone-200 rounded-[1.2rem] shadow-[inset_0_-4px_6px_rgba(0,0,0,0.05),0_4px_10px_rgba(0,0,0,0.1)] flex items-center justify-center relative z-10 border border-white">
+                    <div class="w-[44px] h-[24px] bg-gradient-to-br from-blue-500 to-blue-700 rounded-full shadow-[inset_0_2px_6px_rgba(0,0,0,0.6),0_1px_2px_rgba(255,255,255,0.8)] flex items-center justify-center gap-1.5 relative overflow-hidden">
+                        <div class="absolute top-0.5 left-1/4 w-1/2 h-1.5 bg-white/30 rounded-full blur-[1px]"></div>
+                        <div class="w-3 h-1.5 border-t-[2.5px] border-white rounded-t-full opacity-95"></div>
+                        <div class="w-3 h-1.5 border-t-[2.5px] border-white rounded-t-full opacity-95"></div>
+                    </div>
+                </div>
+                
+                <div class="w-12 h-[22px] bg-gradient-to-b from-stone-100 to-stone-300 rounded-b-[1rem] absolute bottom-[10px] shadow-sm z-0 border border-white/50"></div>
+
+                <div class="absolute -top-1 -right-2 w-12 h-[34px] bg-gradient-to-br from-cyan-300 to-teal-400 rounded-xl rounded-bl-sm shadow-[0_4px_10px_rgba(45,212,191,0.3)] border border-white/80 flex flex-col items-center justify-center gap-1 z-20 animate-float">
+                    <div class="w-6 h-[5px] bg-white/90 rounded-full"></div>
+                    <div class="w-3.5 h-[5px] bg-white/90 rounded-full self-start ml-[10px]"></div>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <!-- 스크립트 모음 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 스크롤 애니메이션
+            const reveals = document.querySelectorAll(".reveal");
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(reveal => revealOnScroll.observe(reveal));
+            
+            // Chart.js 렌더링
+            setTimeout(() => { 
+                if(document.getElementById('vecmChart')){
+                    const ctx = document.getElementById('vecmChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['18년', '19년', '20년', '21년', '22년'],
+                            datasets: [{
+                                label: '고령인구 비율(%)', data: [14.3, 14.9, 15.7, 16.5, 17.5],
+                                borderColor: '#d9381e', backgroundColor: '#d9381e', tension: 0.3, borderWidth: 2, pointRadius: 2,
+                                hoverRadius: 5
+                            }, {
+                                label: '주택매매 지수', data: [100, 102, 110, 125, 120],
+                                borderColor: '#111111', backgroundColor: '#111111', tension: 0.3, borderWidth: 2, pointRadius: 2,
+                                hoverRadius: 5
+                            }]
+                        },
+                        options: {
+                            responsive: true, maintainAspectRatio: false,
+                            interaction: { mode: 'index', intersect: false },
+                            plugins: { 
+                                legend: { position: 'bottom', labels: { boxWidth: 10, font: {size: 9} } },
+                                tooltip: { enabled: true, backgroundColor: 'rgba(0,0,0,0.8)' }
+                            },
+                            scales: { x: { ticks: { font: {size: 9} } }, y: { ticks: { font: {size: 9} } } }
+                        }
+                    });
+                }
+            }, 500);
+        });
+
+        // 자격증 모달
+        function openCertModal(pngFileName) {
+            const modal = document.getElementById('certModal');
+            const img = document.getElementById('certImage');
+            img.src = pngFileName;
+            img.onload = () => img.classList.remove('hidden');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCertModal() {
+            document.getElementById('certModal').classList.add('hidden');
+            document.getElementById('certImage').src = "";
+            document.body.style.overflow = 'auto';
+        }
+        function closeCertModalOnBg(event) { if (event.target.id === 'certModal') closeCertModal(); }
+
+        function openVibeModal() { document.getElementById('vibeModal').classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+        function closeVibeModal() { document.getElementById('vibeModal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
+
+        // 챗봇 제어 로직
+        const chatWindow = document.getElementById('chatWindow');
+        const chatHint = document.getElementById('chatHint');
+        const chatContent = document.getElementById('chatContent');
+        const chatInput = document.getElementById('chatInput');
+        let isTyping = false;
+
+        function toggleChat() { 
+            chatWindow.classList.toggle('hidden'); 
+            if (!chatWindow.classList.contains('hidden')) {
+                chatHint.classList.add('hidden');
+                setTimeout(() => chatInput.focus(), 100);
+            } else {
+                chatHint.classList.remove('hidden');
+            }
+        }
+
+        function askBot(question) {
+            if (isTyping) return; 
+            
+            const faqAnswers = {
+                '강민성의 핵심 경쟁력은?': "프롭테크 기반의 데이터 분석 역량과 현장에서 체득한 상업용 부동산 임대/자산관리(LM·PM) 실무 경험을 겸비한 것입니다.",
+                '매입/매각 분석 경험은?': "GBD 권역 삼원타워를 대상으로 임대차 구조 분석, 캐시플로우 추정, 배당 수익률 시뮬레이션을 수행하여 매입 투자설명서(IM)를 작성한 경험이 있습니다.",
+                '보유한 자격증은?': "상업용 부동산 금융 지식을 증명하는 '투자자산운용사'를 보유하고 있으며, 그 외 TOEIC 905점, 컴활 1급 필기 등을 취득했습니다."
+            };
+
+            displayUserMessage(question);
+            triggerBotTyping(faqAnswers[question]);
+        }
+
+        function submitChat() {
+            if (isTyping) return;
+            const rawQuestion = chatInput.value.trim();
+            if (!rawQuestion) return;
+            
+            chatInput.value = '';
+            displayUserMessage(rawQuestion);
+            
+            const question = rawQuestion.toLowerCase().replace(/ /g, "");
+            let reply = "";
+            
+            if (question.includes("안녕") || question.includes("반가워") || question.includes("하이") || question.includes("누구")) {
+                reply = "안녕하세요! 상업용 부동산 시장의 숨겨진 가치를 발굴할 강민성의 챗봇입니다. 어떤 점이 궁금하신가요?";
+            }
+            else if (question.includes("인턴") || question.includes("경과원") || question.includes("gbsa") || question.includes("실무") || question.includes("경험") || question.includes("자산관리") || question.includes("pm") || question.includes("lm")) {
+                reply = "GBSA(경기도경제과학진흥원)에서 6개월간 인턴으로 근무하며 상가임대차법 기반 계약서 검토, 테넌트 유치 기획, 임대 홍보물(뉴스레터) 제작 등 생생한 자산관리 실무를 경험했습니다.";
+            }
+            else if (question.includes("프로젝트") || question.includes("vecm") || question.includes("분석") || question.includes("통계") || question.includes("데이터") || question.includes("프롭테크")) {
+                reply = "가장 대표적인 것은 VECM 모형을 활용한 시계열 분석입니다. 금리 변동 및 거시 지표가 부동산 시장에 미치는 동태적 영향을 데이터 기반으로 분석해냈습니다.";
+            }
+            else if (question.includes("자격증") || question.includes("투운사") || question.includes("스펙") || question.includes("토익") || question.includes("컴활")) {
+                reply = "금융투자협회 주관 '투자자산운용사'를 취득해 부동산 펀드 및 리츠 구조 이해도를 갖추었고, TOEIC 905점, 컴활 1급 필기 등을 보유하고 있습니다.";
+            }
+            else if (question.includes("im") || question.includes("매입") || question.includes("매각")) {
+                reply = "삼원타워 매입 타당성 분석 프로젝트를 통해 GBD 프라임 오피스 시장을 조사하고 리츠 기반 캐시플로우를 추정하여 IM을 작성한 바 있습니다. 상업용 부동산 매입매각 업무에 바로 기여할 수 있는 핵심 역량입니다.";
+            }
+            else if (question.includes("hug") || question.includes("허그") || question.includes("청년위원") || question.includes("정책")) {
+                reply = "HUG 청년위원 활동을 통해 임대차 시장의 리스크를 분석하고 임대인 안심인증제를 기획하며, 부동산 시장의 문제 해결력과 논리적인 기획력을 길렀습니다.";
+            }
+            else if (question.includes("강점") || question.includes("장점") || question.includes("경쟁력") || question.includes("어필") || question.includes("특기")) {
+                reply = "저의 강점은 '이론적 데이터 분석력(프롭테크)'과 '현장 자산관리 실무(PM/LM)'를 모두 겪어본 융합형 인재라는 점입니다. 상업용 부동산 시장에서 성공적인 결과를 만들어 낼 준비가 되어 있습니다.";
+            }
+            else if (question.includes("연락") || question.includes("이메일") || question.includes("번호") || question.includes("채용") || question.includes("면접") || question.includes("뽑")) {
+                reply = "제 연락처는 010-2892-5108 이며, 이메일은 kms132435@naver.com 입니다. 면접 기회를 주신다면 포트폴리오에 다 담지 못한 저의 진가를 보여드리겠습니다! 😊";
+            }
+            else if (question.includes("바보") || question.includes("멍청이") || question.includes("메롱")) {
+                reply = "앗... 제가 아직 배우는 중이라 부족한 점이 많습니다. 😅 강민성 지원자는 저보다 훨씬 똑똑하답니다!";
+            }
+            else if (question.includes("잘만들") || question.includes("최고") || question.includes("멋져") || question.includes("오") || question.includes("굿")) {
+                reply = "칭찬해 주셔서 감사합니다! 바이브 코딩(AI)과 강민성 지원자의 상업용 부동산 분석 능력이 만나 탄생한 결과물이랍니다. ✌️";
+            }
+            else {
+                const fallbacks = [
+                    "음, 그 부분은 제가 아직 학습하지 못한 내용이에요. 더 자세한 건 이력서를 참고해 주시거나 연락처로 문의해 주시면 강민성 지원자가 직접! 성심껏 답변 드릴 겁니다. 😊",
+                    "좋은 질문이네요! 다만 AI인 저보다는 강민성 지원자에게 직접 물어보시는 건 어떨까요? (연락처: 010-2892-5108)",
+                    "앗, 제가 인식하지 못한 질문입니다. '매입매각', '인턴', '자격증', '데이터' 같은 키워드로 질문해 주시면 더 정확하게 답변해 드릴 수 있어요!"
+                ];
+                reply = fallbacks[Math.floor(Math.random() * fallbacks.length)];
+            }
+            
+            triggerBotTyping(reply);
+        }
+
+        function displayUserMessage(text) {
+            const userHtml = `<div class="flex justify-end"><div class="bg-stone-200 p-2.5 rounded-xl rounded-tr-none shadow-sm text-stone-800 text-xs">${text}</div></div>`;
+            chatContent.insertAdjacentHTML('beforeend', userHtml);
+            chatContent.scrollTop = chatContent.scrollHeight;
+        }
+
+        function triggerBotTyping(text) {
+            isTyping = true;
+            const botId = 'bot-msg-' + Date.now();
+            const botHtml = `<div class="flex gap-2"><div class="w-7 h-7 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center shrink-0"><i class="fa-solid fa-robot text-blue-600 text-xs"></i></div><div id="${botId}" class="bg-white border border-stone-200 p-2.5 rounded-xl rounded-tl-none shadow-sm text-stone-700 leading-relaxed typing-cursor text-xs"></div></div>`;
+            chatContent.insertAdjacentHTML('beforeend', botHtml);
+            chatContent.scrollTop = chatContent.scrollHeight;
+            
+            setTimeout(() => typeWriter(text, document.getElementById(botId), 0), 400);
+        }
+
+        function typeWriter(text, element, i) {
+            if (i < text.length) {
+                element.innerHTML = text.substring(0, i + 1);
+                chatContent.scrollTop = chatContent.scrollHeight;
+                setTimeout(() => typeWriter(text, element, i + 1), 30);
+            } else {
+                element.classList.remove('typing-cursor');
+                isTyping = false;
+            }
+        }
+    </script>
+</body>
+</html>
